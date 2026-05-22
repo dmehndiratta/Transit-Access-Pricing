@@ -1,0 +1,28 @@
+city: montreal
+snapshot_date: "2024-09-01"     # pre-2025 crackdown; set to the archive you use
+
+# Fill these from insideairbnb.com/get-the-data (detailed listings.csv.gz)
+# and the STM / REM / exo GTFS download pages. Leave blank to skip a feed.
+data_urls:
+  airbnb_listings: ""
+  gtfs_stm: ""
+  gtfs_rem: ""
+  gtfs_exo: ""
+
+paths:
+  raw_dir: data/raw
+  processed_dir: data/processed
+
+transit_features:
+  walk_buffer_m: 800            # ~10-minute walk
+  am_peak: ["07:00:00", "09:00:00"]
+  rail_route_types: [0, 1, 2]   # GTFS: 0 tram, 1 metro/subway, 2 rail
+
+downtown_ref:                   # for the centrality control (downtown Montreal)
+  lat: 45.5017
+  lon: -73.5673
+
+model:
+  target: log_price
+  test_size: 0.2
+  random_state: 42
