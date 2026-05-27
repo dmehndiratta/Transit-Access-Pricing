@@ -82,3 +82,33 @@ way it does — not just what it does.
    commuter rent — a related but distinct premium.
 2. The transit premium is identified only after controlling for centrality.
 3. Results are conditioned on the post-2025-regulation market.
+
+## Snapshot pivot
+
+- The `2025-12-22` Montreal listings file was 100% price-stripped; calendar
+  same (3.66M rows, zero non-blank prices). Multiple recent Montreal vintages
+  have prices stripped — likely a platform response to the regulatory
+  situation.
+- Pre-2025 archives require a paid request (individual budget = none), so we
+  pivoted to **2025-06-15**, the earliest free snapshot with prices intact.
+  Added `check_snapshot.py` so future snapshot vetting is a one-shot probe.
+- `fetch_data.py`'s idempotency caches by filename — switching snapshots also
+  means deleting stale `data/raw/listings.csv.gz` and `calendar.csv.gz` so the
+  fetcher re-downloads instead of skipping.
+
+## Finding
+
+OLS attenuation, dist_nearest_rail_km (per +1 km farther from rail):
+
+  1. transit only      -3.68%   (p≈3e-31, R²=0.479)  apparent transit premium
+  2. + centrality      +9.66%   (p≈1e-80, R²=0.545)  SIGN REVERSAL
+  3. + nbhd FE         +4.76%   (p≈4e-6, R²=0.562)   survives within-nbhd
+
+- The naive "transit premium" was centrality in disguise; once controlled
+  for, station-adjacent listings trade at a small *discount*.
+- Survives neighbourhood FE -> not just nbhd-level selection.
+- LightGBM cross-check: dist_to_core_m is the #2 SHAP feature;
+  dist_nearest_rail_m is not in the top four. Independent corroboration.
+- Plausible reading: for short-term tourist rentals, centrality and metro
+  access are substitutes; conditional on centrality, station micro-
+  disamenities (noise, foot traffic) dominate.
