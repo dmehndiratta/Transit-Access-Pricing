@@ -5,7 +5,7 @@ snapshot_date: "2024-09-01"     # pre-2025 crackdown; set to the archive you use
 # and the STM / REM / exo GTFS download pages. Leave blank to skip a feed.
 data_urls:
   airbnb_listings: "https://data.insideairbnb.com/canada/qc/montreal/2025-12-22/data/listings.csv.gz"
-  gtfs_stm: ""
+  gtfs_stm: "https://www.stm.info/sites/default/files/gtfs/gtfs_stm.zip"
   gtfs_rem: ""
   gtfs_exo: ""
 
