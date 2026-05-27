@@ -1,0 +1,78 @@
+{
+  "ols": [
+    {
+      "spec": "1. transit only",
+      "transit_coef": -0.0374510270378718,
+      "transit_se": 0.0032193336168207546,
+      "transit_pval": 2.7954946380753206e-31,
+      "pct_per_km_farther": -3.68,
+      "r2": 0.479,
+      "n": 8778
+    },
+    {
+      "spec": "2. + centrality",
+      "transit_coef": 0.09217195924628964,
+      "transit_se": 0.004848243003536226,
+      "transit_pval": 1.3720150454005494e-80,
+      "pct_per_km_farther": 9.66,
+      "r2": 0.545,
+      "n": 8778
+    },
+    {
+      "spec": "3. + nbhd FE",
+      "transit_coef": 0.04646845644047025,
+      "transit_se": 0.010021491678633688,
+      "transit_pval": 3.5370725962043358e-06,
+      "pct_per_km_farther": 4.76,
+      "r2": 0.562,
+      "n": 8778
+    }
+  ],
+  "gbm": {
+    "r2": 0.613,
+    "rmse_log": 0.443,
+    "n_test": 1756
+  },
+  "shap_ranking": [
+    {
+      "feature": "accommodates",
+      "mean_abs_shap": 0.2556
+    },
+    {
+      "feature": "dist_to_core_m",
+      "mean_abs_shap": 0.1749
+    },
+    {
+      "feature": "bathrooms",
+      "mean_abs_shap": 0.0898
+    },
+    {
+      "feature": "room_type",
+      "mean_abs_shap": 0.0859
+    },
+    {
+      "feature": "neighbourhood_cleansed",
+      "mean_abs_shap": 0.0812
+    },
+    {
+      "feature": "bedrooms",
+      "mean_abs_shap": 0.0586
+    },
+    {
+      "feature": "dist_nearest_rail_m",
+      "mean_abs_shap": 0.0488
+    },
+    {
+      "feature": "n_stops_within_buffer",
+      "mean_abs_shap": 0.0451
+    },
+    {
+      "feature": "freq_weighted_access",
+      "mean_abs_shap": 0.0396
+    },
+    {
+      "feature": "dist_nearest_stop_m",
+      "mean_abs_shap": 0.0361
+    }
+  ]
+}

@@ -46,7 +46,16 @@ def main(cfg: dict | None = None) -> None:
     rd = raw_dir(cfg)
     urls = cfg["data_urls"]
 
-    download(urls.get("airbnb_listings", ""), rd / "listings.csv.gz")
+    listings_url = urls.get("airbnb_listings", "")
+    download(listings_url, rd / "listings.csv.gz")
+
+    # Calendar: holds nightly prices even when listings.csv ships price blank.
+    # Auto-derive its URL from the listings URL if not set explicitly.
+    cal_url = urls.get("airbnb_calendar", "")
+    if not cal_url and listings_url:
+        cal_url = listings_url.replace("listings.csv.gz", "calendar.csv.gz")
+    download(cal_url, rd / "calendar.csv.gz")
+
     for feed in ("gtfs_stm", "gtfs_rem", "gtfs_exo"):
         zip_path = rd / f"{feed}.zip"
         download(urls.get(feed, ""), zip_path)
