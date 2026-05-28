@@ -2,77 +2,85 @@
   "ols": [
     {
       "spec": "1. transit only",
-      "transit_coef": -0.0374510270378718,
-      "transit_se": 0.0032193336168207546,
-      "transit_pval": 2.7954946380753206e-31,
-      "pct_per_km_farther": -3.68,
-      "r2": 0.479,
+      "transit_coef": -0.0373948653221276,
+      "transit_se": 0.0031883766632395468,
+      "transit_pval": 9.106150713209788e-32,
+      "pct_per_km_farther": -3.67,
+      "r2": 0.493,
       "n": 8778
     },
     {
       "spec": "2. + centrality",
-      "transit_coef": 0.09217195924628964,
-      "transit_se": 0.004848243003536226,
-      "transit_pval": 1.3720150454005494e-80,
-      "pct_per_km_farther": 9.66,
-      "r2": 0.545,
+      "transit_coef": 0.09089239607150662,
+      "transit_se": 0.0047720127431815215,
+      "transit_pval": 6.961342057213158e-81,
+      "pct_per_km_farther": 9.52,
+      "r2": 0.559,
       "n": 8778
     },
     {
       "spec": "3. + nbhd FE",
-      "transit_coef": 0.04646845644047025,
-      "transit_se": 0.010021491678633688,
-      "transit_pval": 3.5370725962043358e-06,
-      "pct_per_km_farther": 4.76,
-      "r2": 0.562,
+      "transit_coef": 0.047519728726821996,
+      "transit_se": 0.00985029607902151,
+      "transit_pval": 1.4057129886045632e-06,
+      "pct_per_km_farther": 4.87,
+      "r2": 0.574,
       "n": 8778
     }
   ],
   "gbm": {
-    "r2": 0.613,
-    "rmse_log": 0.443,
+    "r2": 0.642,
+    "rmse_log": 0.426,
     "n_test": 1756
   },
   "shap_ranking": [
     {
       "feature": "accommodates",
-      "mean_abs_shap": 0.2556
+      "mean_abs_shap": 0.2263
     },
     {
       "feature": "dist_to_core_m",
-      "mean_abs_shap": 0.1749
+      "mean_abs_shap": 0.1772
     },
     {
       "feature": "bathrooms",
-      "mean_abs_shap": 0.0898
+      "mean_abs_shap": 0.0874
     },
     {
       "feature": "room_type",
-      "mean_abs_shap": 0.0859
-    },
-    {
-      "feature": "neighbourhood_cleansed",
-      "mean_abs_shap": 0.0812
+      "mean_abs_shap": 0.0857
     },
     {
       "feature": "bedrooms",
-      "mean_abs_shap": 0.0586
+      "mean_abs_shap": 0.0849
     },
     {
-      "feature": "dist_nearest_rail_m",
-      "mean_abs_shap": 0.0488
+      "feature": "number_of_reviews",
+      "mean_abs_shap": 0.0784
+    },
+    {
+      "feature": "neighbourhood_cleansed",
+      "mean_abs_shap": 0.0739
     },
     {
       "feature": "n_stops_within_buffer",
-      "mean_abs_shap": 0.0451
+      "mean_abs_shap": 0.0535
     },
     {
-      "feature": "freq_weighted_access",
-      "mean_abs_shap": 0.0396
+      "feature": "review_scores_rating",
+      "mean_abs_shap": 0.0467
+    },
+    {
+      "feature": "dist_nearest_rail_m",
+      "mean_abs_shap": 0.0389
     },
     {
       "feature": "dist_nearest_stop_m",
-      "mean_abs_shap": 0.0361
+      "mean_abs_shap": 0.03
+    },
+    {
+      "feature": "freq_weighted_access",
+      "mean_abs_shap": 0.0296
     }
   ]
 }

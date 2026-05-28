@@ -28,11 +28,13 @@ from sklearn.metrics import r2_score, mean_squared_error
 
 from _common import load_config, processed_dir, ROOT
 
-BASE_RHS = "accommodates + bedrooms + bathrooms + C(room_type)"
+BASE_RHS = ("accommodates + bedrooms + bathrooms + C(room_type) "
+            "+ review_scores_rating + number_of_reviews")
 TRANSIT = "dist_nearest_rail_km"   # focal capitalisation measure for the OLS story
 
 NUM_FEATURES = [
     "accommodates", "bedrooms", "bathrooms",
+    "review_scores_rating", "number_of_reviews",
     "dist_nearest_stop_m", "dist_nearest_rail_m",
     "n_stops_within_buffer", "freq_weighted_access", "dist_to_core_m",
 ]

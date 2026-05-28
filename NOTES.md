@@ -112,3 +112,27 @@ OLS attenuation, dist_nearest_rail_km (per +1 km farther from rail):
 - Plausible reading: for short-term tourist rentals, centrality and metro
   access are substitutes; conditional on centrality, station micro-
   disamenities (noise, foot traffic) dominate.
+
+## Dashboard polish & control set expansion
+
+- **Controls broadened.** Added `review_scores_rating` (median-imputed for
+  unrated listings) and `number_of_reviews` to both the OLS base and the GBM
+  feature set. These were sitting unused in the cleaned data; they're
+  legitimate quality / popularity proxies and including them strengthens the
+  "what did we control for" story.
+- **What we can't observe** (now stated in the dashboard, not buried): square
+  footage, renovation/age, interior quality, host-specific effects beyond
+  room_type, seasonality (single snapshot). These apply equally to all OLS
+  specifications and so cannot explain the centrality-induced sign reversal.
+- **Dashboard rewrite for a non-technical audience:**
+  - Title becomes a question; subtitle is a one-sentence finding.
+  - Plain-English labels everywhere a column name would otherwise show.
+  - Map colour scales clipped to the 5th–95th percentile so outliers don't
+    flatten the colour range.
+  - Transit-premium tab narrates the *sign-flip* finding (not the original
+    canned "attenuation" story).
+  - Model tab now explains predicted-vs-actual, R², RMSE in log-price terms,
+    and the SHAP dependence plot in plain language.
+  - Methodology tab carries the full control-set inventory, the data
+    limitations, the two-method rationale, and proper attribution for both
+    Inside Airbnb (CC BY 4.0) and STM (open data licence).

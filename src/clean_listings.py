@@ -77,6 +77,14 @@ def main(cfg: dict | None = None) -> None:
         df["bedrooms"] = df["bedrooms"].fillna(est)
     if "bathrooms" in df:
         df["bathrooms"] = df["bathrooms"].fillna(df["bathrooms"].median())
+    if "review_scores_rating" in df:
+        rated = int(df["review_scores_rating"].notna().sum())
+        print(f"  review coverage: {rated:,} of {len(df):,} listings "
+              f"({100*rated/len(df):.0f}%) - median-imputing the rest")
+        df["review_scores_rating"] = df["review_scores_rating"].fillna(
+            df["review_scores_rating"].median())
+    if "number_of_reviews" in df:
+        df["number_of_reviews"] = df["number_of_reviews"].fillna(0)
 
     # --- integrity ---
     df = df.dropna(subset=["latitude", "longitude", "price"]).copy()
