@@ -40,9 +40,9 @@ def L(c): return LABELS.get(c, c)
 st.set_page_config(page_title="Transit Access & Price", layout="wide")
 st.title("Does being near transit make a place more expensive?")
 st.markdown(
-    "A hedonic-pricing study of Montreal short-term rentals. We test the "
-    "intuition that proximity to transit raises listing prices — and find "
-    "that **the obvious answer flips once you account for centrality.** "
+    "A hedonic-pricing study of Montreal short-term rentals. I test the "
+    "intuition that proximity to transit raises listing prices and find "
+    "that the obvious answer flips once you account for centrality of listing. "
     "Built end-to-end from open data with a reproducible pipeline.")
 
 if not DATA.exists():
@@ -80,7 +80,7 @@ with tab_map:
         "Each dot is one listing in your filtered selection. Use the toggle "
         "to colour by price or by walking distance to the nearest rail "
         "station. Colour scales are clipped to the 5th–95th percentile so "
-        "the bulk of variation is visible — a few extreme outliers don't "
+        "the bulk of variation is visible and a few extreme outliers don't "
         "wash everything else out.")
     map_choices = {
         "Price": "price",
@@ -141,15 +141,15 @@ with tab_prem:
                  delta=f"{ctrl - naive:+.1f} pts", delta_color="off")
 
         st.markdown(
-            "**How to read this.** The first row is the *naive* model — "
+            "**How to read this.** The first row is the *naive* model: "
             "structural features (size, bathrooms, room type, reviews) plus "
-            "the rail-distance variable, but **no** control for how central "
+            "the rail-distance variable, but no control for how central "
             "a listing is. It suggests being closer to rail commands a small "
             "price premium.\n\n"
-            "Row 2 adds one variable: distance to downtown. The sign **flips**. "
+            "Row 2 adds one variable: distance to downtown. The sign flips. "
             "Conditional on centrality, listings *farther* from rail are "
-            "slightly pricier. Row 3 adds neighbourhood fixed effects — i.e. "
-            "we compare listings *within the same neighbourhood* — and the "
+            "slightly pricier. Row 3 adds neighbourhood fixed effects, i.e. "
+            "we compare listings within the same neighbourhood. The "
             "reversal survives, ruling out the explanation that it's just "
             "that rail tends to run through cheaper neighbourhoods.\n\n"
             "**A plausible reading.** Short-term rentals are priced for "
@@ -164,7 +164,7 @@ with tab_prem:
         st.caption(
             "We also fit a flexible machine-learning model (gradient-boosted "
             "trees) as an independent cross-check. The bars below show each "
-            "feature's average contribution to the price prediction — bigger "
+            "feature's average contribution to the price prediction. Bigger "
             "bars mean the model leans more on that feature. Notice that "
             "distance to downtown matters far more than distance to rail, "
             "consistent with the OLS reversal above.")
@@ -240,7 +240,7 @@ with tab_method:
     st.markdown(
         "How much of a listing's price is explained by being near transit, "
         "once everything else is held constant? This is a hedonic-pricing "
-        "question — the standard economics framework for measuring how an "
+        "question; the standard economics framework for measuring how an "
         "unpriced amenity (transit access) is capitalised into the price of "
         "something that *is* priced (here, accommodation).")
 
@@ -253,7 +253,7 @@ with tab_method:
         "number of reviews\n"
         "- **Location** — distance to downtown (continuous), plus "
         "neighbourhood fixed effects in the strict spec (so we compare "
-        "listings *within* the same neighbourhood)\n"
+        "listings within the same neighbourhood)\n"
         "- **Transit access** — distance to nearest stop, distance to "
         "nearest rail station, number of stops within an 800m walk, and a "
         "frequency-weighted access score (stops nearby, weighted by "
@@ -272,7 +272,7 @@ with tab_method:
         "- **Seasonality** — we use one snapshot, so seasonal demand "
         "swings aren't separated from listing-level effects\n\n"
         "These limitations apply equally to the naive and the controlled "
-        "models, so they can't explain the sign reversal — that comes "
+        "models, so they can't explain the sign reversal, which comes "
         "purely from adding centrality. But they do mean the model's "
         "absolute predictive accuracy has a ceiling: a typical R² of "
         "~0.6 reflects how much listing variation simply isn't observable "
@@ -280,25 +280,25 @@ with tab_method:
 
     st.markdown("### Why two methods")
     st.markdown(
-        "We report **OLS hedonic regression** for interpretable implicit "
-        "prices (the standard econ approach) and **LightGBM with SHAP** "
+        "We report OLS hedonic regression for interpretable implicit "
+        "prices (the standard econ approach) and LightGBM with SHAP "
         "as an independent flexible-form check. If a linear model and a "
         "gradient-boosted tree model agree on the centrality story, the "
         "finding isn't an artefact of either's functional form. They do.")
 
     st.markdown("### Interpretation caveats")
     st.markdown(
-        "- Airbnb nightly prices reflect short-term **tourist** "
+        "- Airbnb nightly prices reflect short-term tourist "
         "willingness to pay, not commuter rent. The substitution between "
         "centrality and transit access that drives the finding is "
-        "specific to the tourist context — commuter-rent capitalisation "
+        "specific to the tourist context, and commuter-rent capitalisation "
         "of transit may look different.\n"
         "- The estimated coefficient on rail distance is conditional on "
         "the centrality measure used. Distance to a single downtown "
         "reference is a reasonable proxy for tourist-relevant centrality "
         "in Montreal; a more granular measure (e.g. distance to specific "
         "attractions) might shift the magnitude.\n"
-        "- Results are conditioned on the 2025-06-15 snapshot — the "
+        "- Results are conditioned on the 2025-06-15 snapshot, the "
         "earliest free Inside Airbnb release for Montreal that still "
         "carries listing prices.")
 
